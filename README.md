@@ -1,42 +1,56 @@
-# Mister Pandit website preview
+# Mister Pandit Website
 
-A lightweight, responsive sample website for the Pandit ceremony-booking idea. It uses plain HTML, CSS, and JavaScript so the demo can run without an account, API, database, or package installation.
+A responsive static website built with HTML, CSS, and JavaScript. It has no
+runtime dependencies or package installation step.
 
 ## Run locally
 
-Open index.html in a browser, or start a small local server from this folder:
+From this folder, start a local server:
 
-    python -m http.server 4173
+```powershell
+python -m http.server 4173
+```
 
-Then visit http://localhost:4173.
+Then open <http://localhost:4173>.
 
-## What you can try
+## Build the deployable site
 
-- Search sample pandit profiles by ceremony and city.
-- Filter by ceremony, city, or ritual language.
-- Save profiles in this browser.
-- Choose a ceremony using artwork shared with the customer app.
-- Open the planning form and preview a ceremony, date, time, location, place,
-  and language selection.
-- Use the responsive navigation and sample confirmation flow.
+Use Node.js to create the production output:
 
-## Demo boundaries
+```powershell
+node build.mjs
+```
 
-The pandit profiles are fictional examples. The request form shows a local confirmation only; it does not send, store, or create a real booking. There is no live authentication, backend, payment, or contact with a pandit.
+The script creates `dist/` with only the site entry point, styles, JavaScript,
+assets, and Cloudflare response headers. Repository documentation and Git files
+are kept out of the published output.
 
 ## Cloudflare Pages
 
-This is a static site: `index.html`, `styles.css`, `app.js`, and `assets/` are
-ready to serve from the repository root. No framework, package installation, or
-build step is required.
+Connect this GitHub repository to Cloudflare Pages and use:
 
-For a Git-connected Cloudflare Pages project, use:
+| Setting | Value |
+| --- | --- |
+| Production branch | `main` |
+| Framework preset | `None` |
+| Build command | `node build.mjs` |
+| Build output directory | `dist` |
+| Root directory | Repository root (default) |
 
-- Production branch: `main`
-- Build command: `exit 0`
-- Build output directory: `.`
+Cloudflare Pages will build and publish each update to `main`. The build copies
+the root `_headers` file into `dist`, so the configured security and caching
+headers are applied to the deployed site.
 
-The root `_headers` file supplies security and cache headers. After the first
-Pages deployment, add the GoDaddy domain under the Pages project’s **Custom
-domains** settings and use the DNS instructions Cloudflare provides. No domain
-or DNS records are managed by this repository.
+After the first deployment, add the GoDaddy-registered domain in the Pages
+project's **Custom domains** settings and follow the DNS instructions Cloudflare
+provides. An apex domain requires the domain's nameservers to point to
+Cloudflare. This repository does not change domain registration or DNS records.
+
+## Current website behavior
+
+- Browse and filter pandit profiles by ceremony, city, and ritual language.
+- Save profiles in the current browser.
+- Select ceremony details and see a local planning confirmation.
+- Profile and ceremony information is currently static; authentication,
+  payments, and booking submission need a backend integration before accepting
+  real customer requests.
