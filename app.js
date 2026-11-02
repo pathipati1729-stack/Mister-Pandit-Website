@@ -75,6 +75,8 @@ function openBooking(panditName, ceremonyValue) {
   document.getElementById("booking-pandit").value = panditName || "";
   if (ceremonyValue)
     document.getElementById("booking-ceremony").value = ceremonyValue;
+  document.getElementById("booking-city").value =
+    document.getElementById("quick-city").value || cityFilter.value;
   bookingPanel.hidden = false;
   bookingSuccess.hidden = true;
   bookingDialog.showModal();
@@ -176,7 +178,10 @@ bookingForm.addEventListener("submit", (event) => {
   if (!bookingForm.reportValidity()) return;
   const formData = new FormData(bookingForm);
   const firstName = String(formData.get("name")).trim().split(/\s+/)[0];
-  const ceremony = String(formData.get("ceremony"));
+  const ceremony = bookingForm.elements.ceremony.selectedOptions[0].textContent;
+  const city = String(formData.get("city")).trim();
+  const time = String(formData.get("time"));
+  const place = String(formData.get("place"));
   const date = new Date(String(formData.get("date") + "T12:00:00"));
   const dateLabel = new Intl.DateTimeFormat("en-IN", {
     day: "numeric",
@@ -190,10 +195,17 @@ bookingForm.addEventListener("submit", (event) => {
     firstName +
     ". Your sample " +
     ceremony +
-    " request" +
+    " plan" +
     guideLine +
     " for " +
     dateLabel +
+    " in " +
+    city +
+    " (" +
+    time.toLowerCase() +
+    ", " +
+    place.toLowerCase() +
+    ")" +
     " is ready to review.";
   bookingPanel.hidden = true;
   bookingSuccess.hidden = false;
