@@ -2,7 +2,6 @@ const cards = Array.from(document.querySelectorAll(".pandit-card"));
 const ceremonyFilter = document.getElementById("filter-ceremony");
 const languageFilter = document.getElementById("filter-language");
 const cityFilter = document.getElementById("filter-city");
-const resultCount = document.getElementById("results-count");
 const emptyState = document.getElementById("empty-state");
 const savedToggle = document.getElementById("saved-toggle");
 const savedCount = document.getElementById("saved-count");
@@ -58,7 +57,6 @@ function applyFilters() {
     card.hidden = !matches;
     if (matches) visible += 1;
   });
-  resultCount.textContent = visible + (visible === 1 ? " pandit" : " pandits");
   emptyState.hidden = visible !== 0;
 }
 
