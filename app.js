@@ -58,8 +58,7 @@ function applyFilters() {
     card.hidden = !matches;
     if (matches) visible += 1;
   });
-  resultCount.textContent =
-    visible + (visible === 1 ? " sample profile" : " sample profiles");
+  resultCount.textContent = visible + (visible === 1 ? " pandit" : " pandits");
   emptyState.hidden = visible !== 0;
 }
 
@@ -189,11 +188,11 @@ bookingForm.addEventListener("submit", (event) => {
     year: "numeric",
   }).format(date);
   const panditName = document.getElementById("booking-pandit").value;
-  const guideLine = panditName ? " for " + panditName : "";
+  const guideLine = panditName ? " with " + panditName : "";
   document.getElementById("success-message").textContent =
     "Thanks, " +
     firstName +
-    ". Your sample " +
+    ". Your " +
     ceremony +
     " plan" +
     guideLine +

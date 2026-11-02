@@ -662,13 +662,6 @@ h2 em {
   background: var(--teal-light);
 }
 
-.demo-note {
-  margin: 14px 0 0;
-  color: var(--secondary);
-  font-size: 12px;
-  text-align: center;
-}
-
 .empty-state {
   padding: 24px;
   border: 1px solid var(--border);
@@ -835,13 +828,6 @@ h2 em {
   margin-top: 2px;
 }
 
-.form-privacy {
-  margin: 10px 0 0;
-  color: var(--secondary);
-  font-size: 12px;
-  text-align: center;
-}
-
 .booking-success {
   padding: 24px 8px 8px;
   text-align: center;
@@ -874,15 +860,6 @@ h2 em {
 .booking-success > p:not(.eyebrow) {
   color: var(--secondary);
   font-size: 14px;
-}
-
-.success-reminder {
-  margin: 16px 0;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: var(--surface);
-  color: var(--secondary);
-  font-size: 13px;
 }
 
 .toast {
